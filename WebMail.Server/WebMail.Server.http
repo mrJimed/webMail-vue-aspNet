@@ -1,0 +1,6 @@
+@WebMail.Server_HostAddress = http://localhost:5124
+
+GET {{WebMail.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
