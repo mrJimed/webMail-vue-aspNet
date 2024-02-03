@@ -5,11 +5,13 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from './pages/Home.vue'
 import Registration from './pages/Registration.vue'
+import Authorization from './pages/Authorization.vue'
 import App from './App.vue'
 
 const routes = [
     { path: '/', name: 'Home', component: Home },
-    { path: '/registration', name: 'Registration', component: Registration }
+    { path: '/registration', name: 'Registration', component: Registration },
+    { path: '/authorization', name: 'Authorization', component: Authorization }
 ];
 
 const router = createRouter({

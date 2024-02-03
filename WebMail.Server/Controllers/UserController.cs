@@ -32,6 +32,28 @@ namespace WebMail.Server.Controllers
             return Ok(user);
         }
 
+        [HttpPost("authorization")]
+        public async Task<IActionResult> AuthorizationAsync([FromBody] User user)
+        {
+            var fullUser = dbContext.Users.FirstOrDefault(u => u.Email.Equals(user.Email));
+            if (fullUser == null)
+            {
+                return BadRequest(new
+                {
+                    Message = "Пользователя с таким email не существует"
+                });
+            } else if(!fullUser.Password.Equals(CreateHashPassword(user.Password, Convert.FromBase64String(fullUser.Salt))))
+            {
+                return BadRequest(new
+                {
+                    Message = "Неправильный email или пароль"
+                });
+            }
+
+            await SignInAsync(fullUser.Email);
+            return Ok(fullUser);
+        }
+
         private async Task SignInAsync(string email)
         {
             var claims = new List<Claim> { new Claim(ClaimTypes.Name, email) };

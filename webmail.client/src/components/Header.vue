@@ -14,13 +14,14 @@
             Регистрация
           </button>
         </router-link>
-
-        <button
-          type="button"
-          class="border border-black px-3 py-2 rounded-md transition hover:bg-black hover:text-white"
-        >
-          Вход
-        </button>
+        <router-link to="/authorization">
+          <button
+            type="button"
+            class="border border-black px-3 py-2 rounded-md transition hover:bg-black hover:text-white"
+          >
+            Вход
+          </button>
+        </router-link>
       </div>
     </div>
   </header>

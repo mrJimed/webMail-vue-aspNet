@@ -8,3 +8,11 @@ export async function registrationUserAsync(username, email, password) {
     });
     return user;
 }
+
+export async function authorizationUserAsync(email, password) {
+    const { data: user } = await axios.post('/user/authorization', {
+        email: email,
+        password: password
+    });
+    return user;
+}
