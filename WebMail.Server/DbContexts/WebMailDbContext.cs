@@ -3,13 +3,8 @@ using WebMail.Server.Models;
 
 namespace WebMail.Server.DbContexts
 {
-    public class WebMailDbContext : DbContext
+    public class WebMailDbContext(DbContextOptions options) : DbContext(options)
     {
         public DbSet<User> Users { get; set; } = null!;
-
-        public WebMailDbContext(DbContextOptions options) : base(options)
-        {
-            Database.EnsureCreated();
-        }
     }
 }
