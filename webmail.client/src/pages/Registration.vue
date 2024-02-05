@@ -1,6 +1,9 @@
 <script setup>
 import { ref } from "vue";
 import { registrationUserAsync } from "../services/userService.js";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const username = ref("");
 const email = ref("");
@@ -16,6 +19,8 @@ async function onRegistrationAsync(event) {
       email.value,
       password.value
     );
+
+    router.push({ name: "Home" });
   } catch (exeption) {
     const {
       response: { data: exeptData },
