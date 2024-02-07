@@ -2,8 +2,10 @@
 import { ref } from "vue";
 import { registrationUserAsync } from "../services/userService.js";
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 
 const router = useRouter();
+const store = useStore();
 
 const username = ref("");
 const email = ref("");
@@ -19,7 +21,7 @@ async function onRegistrationAsync(event) {
       email.value,
       password.value
     );
-
+    store.dispatch("login", user.username);
     router.push({ name: "Home" });
   } catch (exeption) {
     const {

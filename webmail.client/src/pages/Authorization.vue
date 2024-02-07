@@ -2,8 +2,10 @@
 import { ref } from "vue";
 import { authorizationUserAsync } from "../services/userService.js";
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 
 const router = useRouter();
+const store = useStore();
 
 const email = ref("");
 const password = ref("");
@@ -14,6 +16,7 @@ async function onAuthorizationAsync(event) {
 
   try {
     const user = await authorizationUserAsync(email.value, password.value);
+    store.dispatch("login", user.username);
     router.push({ name: "Home" });
   } catch (exeption) {
     const {
