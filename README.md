@@ -4,7 +4,6 @@
 # Frontend
 * Vue.js 3
 * Vue Router
-* Vuex
 * Tailwind
 * Axios
 
