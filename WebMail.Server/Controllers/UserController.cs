@@ -54,6 +54,12 @@ namespace WebMail.Server.Controllers
             return Ok(fullUser);
         }
 
+        [HttpPost("logout")]
+        public async void LogoutAsync()
+        {
+            await HttpContext.SignOutAsync();
+        }
+
         private async Task SignInAsync(string email)
         {
             var claims = new List<Claim> { new Claim(ClaimTypes.Name, email) };

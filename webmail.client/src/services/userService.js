@@ -16,3 +16,7 @@ export async function authorizationUserAsync(email, password) {
     });
     return user;
 }
+
+export async function logoutUserAsync() {
+    await axios.post('/user/logout');
+}
