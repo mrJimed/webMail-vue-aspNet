@@ -7,3 +7,5 @@
 ## Backend
 * C# .NET 8
 * ASP.NET
+* Swagger
+* MailKit
