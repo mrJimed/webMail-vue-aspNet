@@ -1,7 +1,12 @@
-﻿namespace webMail.Server.Schemas
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+
+namespace webMail.Server.Schemas
 {
     public class UserRegData : UserLoginData
     {
-        public string Username { get; set; }
+        [Required(ErrorMessage = "Отсутствует имя пользователя.")]
+        [JsonPropertyName("username")]
+        public required string Username { get; set; }
     }
 }
