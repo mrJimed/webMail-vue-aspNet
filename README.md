@@ -9,3 +9,5 @@
 * ASP.NET
 * Swagger
 * MailKit
+* Entity Framework Core
+* Entity Framework Core Migrations
