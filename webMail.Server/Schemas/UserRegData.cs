@@ -7,6 +7,6 @@ namespace webMail.Server.Schemas
     {
         [Required(ErrorMessage = "Отсутствует имя пользователя.")]
         [JsonPropertyName("username")]
-        public required string Username { get; set; }
+        public required string Username { get; init; }
     }
 }
