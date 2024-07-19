@@ -4,6 +4,7 @@
 ## Frontend
 * Vue.ts
 * Tailwind
+* Axios
 
 ## Backend
 * C# .NET 8
