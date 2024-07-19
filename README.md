@@ -11,3 +11,4 @@
 * MailKit
 * Entity Framework Core
 * Entity Framework Core Migrations
+* CORS
