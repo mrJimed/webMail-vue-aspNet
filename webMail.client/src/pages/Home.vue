@@ -49,13 +49,19 @@ function showPopUp(subject: string, text: string, popUpType: number) {
     </div>
 
     <div class="flex flex-col">
-      <label for="toEmail">Тема письма:</label>
-      <input type="text" placeholder="Введите тему письма." v-model="messageData.subject" />
+      <label for="subject">Тема письма:</label>
+      <input
+        id="subject"
+        type="text"
+        placeholder="Введите тему письма."
+        v-model="messageData.subject"
+      />
     </div>
 
     <div class="flex flex-col">
-      <label for="toEmail">Текст сообщения:</label>
+      <label for="text">Текст сообщения:</label>
       <textarea
+        id="text"
         type="text"
         placeholder="Введите текст письма."
         v-model="messageData.text"
