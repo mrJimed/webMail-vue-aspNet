@@ -10,5 +10,10 @@ namespace webMail.Server.Configuration
             configuration.GetSection(MailOptions.SectionKey).Bind(mailOptions);
             return mailOptions;
         }
+
+        public static string GetClientUrl(this IConfiguration configuration)
+        {
+            return configuration.GetSection("ClientUrl").Value;
+        }
     }
 }
