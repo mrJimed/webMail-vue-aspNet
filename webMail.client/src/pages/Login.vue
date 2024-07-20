@@ -4,6 +4,9 @@ import UserService from '../services/UserService'
 import InfoPopUp from '../components/InfoPopUp.vue'
 import { reactive, ref } from 'vue'
 import InfoPopUpType from '../enums/InfoPopUpType'
+import { useUserStore } from '../modules/Store'
+
+const userStore = useUserStore()
 
 // info pop up data
 const isInfoPopUpVisible = ref(false)
@@ -19,7 +22,8 @@ const userLoginData: UserLoginData = reactive({
 
 async function loginAsync() {
   try {
-    await UserService.loginUserAsync(userLoginData)
+    const user = await UserService.loginUserAsync(userLoginData)
+    userStore.login(user)
   } catch (e) {
     console.log(e)
     showPopUp('Ошибка', 'Во время авторизации произошла ошибка')

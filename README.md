@@ -4,6 +4,7 @@
 ## Frontend
 * Vue.ts
 * Vue Router
+* Pinia
 * Tailwind
 * Axios
 

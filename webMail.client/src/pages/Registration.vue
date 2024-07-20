@@ -4,6 +4,9 @@ import type UserRegData from '../schemas/UserRegData'
 import UserService from '../services/UserService'
 import InfoPopUp from '../components/InfoPopUp.vue'
 import InfoPopUpType from '../enums/InfoPopUpType'
+import { useUserStore } from '../modules/Store'
+
+const userStore = useUserStore()
 
 // info pop up data
 const isInfoPopUpVisible = ref(false)
@@ -20,7 +23,8 @@ const userRegData: UserRegData = reactive({
 
 async function registrationAsync() {
   try {
-    await UserService.registrationUser(userRegData)
+    const user = await UserService.registrationUser(userRegData)
+    userStore.login(user)
   } catch (e) {
     console.log(e)
     showPopUp('Ошибка', 'Во время регистрации произошла ошибка')
