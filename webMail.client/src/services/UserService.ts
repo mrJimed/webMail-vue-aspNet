@@ -9,7 +9,7 @@ async function loginUserAsync(userData: UserLoginData): Promise<string> {
   return data
 }
 
-async function registrationUserAsync(userData: UserRegData) {
+async function registrationUserAsync(userData: UserRegData): Promise<string> {
   const SERVER_URL = `${ServerConfig.getServerUrl()}/user/registration`
   const { data } = await axios.post(SERVER_URL, userData)
   return data
