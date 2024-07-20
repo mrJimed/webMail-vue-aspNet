@@ -3,6 +3,7 @@
 
 ## Frontend
 * Vue.ts
+* Vue Router
 * Tailwind
 * Axios
 
