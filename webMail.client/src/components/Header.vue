@@ -1,10 +1,16 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useUserStore } from '../modules/Store'
+import UserService from '../services/UserService'
 
 const userStore = useUserStore()
 const user = computed(() => userStore.user)
 const isAuthorized = computed(() => userStore.isAuthorized)
+
+async function logoutAsync() {
+  await UserService.logoutUserAsync()
+  userStore.logout()
+}
 </script>
 
 <template>
@@ -15,7 +21,10 @@ const isAuthorized = computed(() => userStore.isAuthorized)
       </RouterLink>
 
       <nav>
-        <div v-if="isAuthorized" class="mr-5">Username: {{ user }}</div>
+        <div v-if="isAuthorized">
+          <div>Username: {{ user }}</div>
+          <button @click="() => logoutAsync()">Выход</button>
+        </div>
         <RouterLink v-else :to="{ name: 'Login' }">Вход</RouterLink>
       </nav>
     </div>

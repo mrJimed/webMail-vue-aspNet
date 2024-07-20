@@ -23,7 +23,7 @@ const userRegData: UserRegData = reactive({
 
 async function registrationAsync() {
   try {
-    const user = await UserService.registrationUser(userRegData)
+    const user = await UserService.registrationUserAsync(userRegData)
     userStore.login(user)
   } catch (e) {
     console.log(e)

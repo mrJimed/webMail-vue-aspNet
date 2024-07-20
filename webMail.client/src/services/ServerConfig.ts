@@ -1,5 +1,10 @@
-function getServerUrl(): string {
-  return 'https://localhost:7196'
-}
+import axios from 'axios'
 
-export default { getServerUrl }
+axios.defaults.withCredentials = true
+
+const serverApi = axios.create({
+  baseURL: 'https://localhost:7196',
+  withCredentials: true
+})
+
+export default { serverApi }
