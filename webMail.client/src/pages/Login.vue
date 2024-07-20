@@ -59,11 +59,15 @@ function showPopUp(subject: string, text: string) {
         />
       </div>
 
-      <input
-        class="cursor-pointer bg-black text-white rounded-md px-2 py-1"
-        type="submit"
-        value="Войти"
-      />
+      <div class="flex items-center justify-between">
+        <input
+          class="cursor-pointer bg-black text-white rounded-md px-2 py-1"
+          type="submit"
+          value="Войти"
+        />
+
+        <RouterLink :to="{ name: 'Registration' }" class="underline">Нет аккаунта?</RouterLink>
+      </div>
     </form>
   </div>
 
