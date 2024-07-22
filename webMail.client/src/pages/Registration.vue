@@ -21,13 +21,26 @@ const userRegData: UserRegData = reactive({
   username: ''
 })
 
+function getErrorMessage(data: any): string {
+  if (data.errors !== undefined && data.errors !== null) {
+    const errors = data.errors
+    return Object.getOwnPropertyNames(errors)
+      .map((errorKey, index) => `${index + 1}) ${errors[errorKey].join(' ')}`)
+      .join(' ')
+  }
+  return data
+}
+
 async function registrationAsync() {
   try {
     const user = await UserService.registrationUserAsync(userRegData)
     userStore.login(user)
   } catch (e) {
     console.log(e)
-    showPopUp('Ошибка', 'Во время регистрации произошла ошибка')
+    const {
+      response: { data }
+    } = e
+    showPopUp('Ошибка', getErrorMessage(data))
   }
 }
 

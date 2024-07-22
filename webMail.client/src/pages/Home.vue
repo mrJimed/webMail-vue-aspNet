@@ -18,13 +18,26 @@ const messageData: SendMessageData = reactive({
   toEmail: ''
 })
 
+function getErrorMessage(data: any): string {
+  if (data.errors !== undefined && data.errors !== null) {
+    const errors = data.errors
+    return Object.getOwnPropertyNames(errors)
+      .map((errorKey, index) => `${index + 1}) ${errors[errorKey].join(' ')}`)
+      .join(' ')
+  }
+  return data
+}
+
 async function sendMessageAsync(): Promise<void> {
   try {
     await MailService.sendMessageAsync(messageData)
     showPopUp('Успешно', 'Сообщение отправлено', InfoPopUpType.Success)
   } catch (e) {
     console.log(e)
-    showPopUp('Ошибка', 'При отправке сообщения произошла ошибка', InfoPopUpType.Error)
+    const {
+      response: { data }
+    } = e
+    showPopUp('Ошибка', getErrorMessage(data), InfoPopUpType.Error)
   }
 }
 

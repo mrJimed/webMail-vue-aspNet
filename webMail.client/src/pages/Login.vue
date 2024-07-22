@@ -20,13 +20,26 @@ const userLoginData: UserLoginData = reactive({
   password: ''
 })
 
+function getErrorMessage(data: any): string {
+  if (data.errors !== undefined && data.errors !== null) {
+    const errors = data.errors
+    return Object.getOwnPropertyNames(errors)
+      .map((errorKey, index) => `${index + 1}) ${errors[errorKey].join(' ')}`)
+      .join(' ')
+  }
+  return data
+}
+
 async function loginAsync() {
   try {
     const user = await UserService.loginUserAsync(userLoginData)
     userStore.login(user)
   } catch (e) {
     console.log(e)
-    showPopUp('Ошибка', 'Во время авторизации произошла ошибка')
+    const {
+      response: { data }
+    } = e
+    showPopUp('Ошибка', getErrorMessage(data))
   }
 }
 
