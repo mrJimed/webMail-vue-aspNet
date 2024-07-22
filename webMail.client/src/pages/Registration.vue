@@ -63,7 +63,7 @@ function showPopUp(subject: string, text: string) {
         <input
           id="email"
           class="px-2 py-1 rounded-md outline-none"
-          type="email"
+          type="text"
           placeholder="Введите имя пользователя..."
           v-model="userRegData.username"
         />
