@@ -5,8 +5,10 @@ import UserService from '../services/UserService'
 import InfoPopUp from '../components/InfoPopUp.vue'
 import InfoPopUpType from '../enums/InfoPopUpType'
 import { useUserStore } from '../modules/Store'
+import { useRouter } from 'vue-router'
 
 const userStore = useUserStore()
+const router = useRouter()
 
 // info pop up data
 const isInfoPopUpVisible = ref(false)
@@ -35,6 +37,7 @@ async function registrationAsync() {
   try {
     const user = await UserService.registrationUserAsync(userRegData)
     userStore.login(user)
+    router.push({ name: 'Home' })
   } catch (e) {
     console.log(e)
     const {

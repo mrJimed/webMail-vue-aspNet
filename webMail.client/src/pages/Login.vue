@@ -5,8 +5,10 @@ import InfoPopUp from '../components/InfoPopUp.vue'
 import { reactive, ref } from 'vue'
 import InfoPopUpType from '../enums/InfoPopUpType'
 import { useUserStore } from '../modules/Store'
+import { useRouter } from 'vue-router'
 
 const userStore = useUserStore()
+const router = useRouter()
 
 // info pop up data
 const isInfoPopUpVisible = ref(false)
@@ -34,6 +36,7 @@ async function loginAsync() {
   try {
     const user = await UserService.loginUserAsync(userLoginData)
     userStore.login(user)
+    router.push({ name: 'Home' })
   } catch (e) {
     console.log(e)
     const {

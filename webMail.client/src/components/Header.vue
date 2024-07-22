@@ -2,14 +2,18 @@
 import { computed } from 'vue'
 import { useUserStore } from '../modules/Store'
 import UserService from '../services/UserService'
+import { useRouter } from 'vue-router';
 
 const userStore = useUserStore()
+const router = useRouter()
+
 const user = computed(() => userStore.user)
 const isAuthorized = computed(() => userStore.isAuthorized)
 
 async function logoutAsync() {
   await UserService.logoutUserAsync()
   userStore.logout()
+  router.push({ name: 'Login' })
 }
 </script>
 
