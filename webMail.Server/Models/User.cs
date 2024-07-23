@@ -21,5 +21,7 @@ namespace webMail.Server.Models
 
         [Column("salt", TypeName = "varchar")]
         public required string Salt { get; set; }
+
+        public virtual List<MailHistory> MailHistories { get; set; } = [];
     }
 }

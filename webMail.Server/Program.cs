@@ -23,9 +23,11 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 
 // My services
-builder.Services.AddDbContext<WebMailDbContext>(optionsBuilder => optionsBuilder.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<WebMailDbContext>(optionsBuilder => optionsBuilder.UseLazyLoadingProxies()
+    .UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddSingleton(ServiceFactory.CreateMailService);
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IMailHistoryService, MailHistoryService>();
 
 var app = builder.Build();
 
